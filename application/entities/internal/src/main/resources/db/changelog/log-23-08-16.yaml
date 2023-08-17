@@ -1,0 +1,108 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dragos Niculescu
+      changes:
+        - createTable:
+            tableName: tags
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+  - changeSet:
+      id: 2
+      author: Dragos Niculescu
+      changes:
+        - createTable:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+  - changeSet:
+      id: 3
+      author: Dragos Niculescu
+      changes:
+        - createTable:
+            tableName: pets
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: pets_category_id_fk
+                    references: categories(id)
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+
+  - changeSet:
+      id: 4
+      author: Dragos Niculescu
+      changes:
+        - createTable:
+            tableName: pet_tag
+            columns:
+              - column:
+                  name: pet_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: pet_tag_pet_id_fk
+                    references: pets(id)
+              - column:
+                  name: tag_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: pet_tag_tag_id_fk
+                    references: tags(id)
+
+  - changeSet:
+      id: 5
+      author: Dragos Niculescu
+      changes:
+        - createTable:
+            tableName: pet_photo_urls
+            columns:
+              - column:
+                  name: pet_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: pet_photo_urls_pet_id_fk
+                    references: pets(id)
+              - column:
+                  name: photo_url
+                  type: VARCHAR(255)

@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: sbt-demo
+
+  liquibase:
+    change-log: classpath:db/changelog/master.yaml
+    default-schema: public
+
+  datasource:
+    url: TBD
+    username: TBD
+    password: TBD
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        default-schema: public
+
+server:
+  port: 8080
+
+sbt-demo:
+  http:
+    allowed-origin-patterns: "*"
+
+

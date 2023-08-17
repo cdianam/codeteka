@@ -1,0 +1,8 @@
+plugins {
+    id 'sbt-openapi'
+}
+
+group = "com.sbt.demo.application.controllers.api"
+
+project.archivesBaseName = 'demo-http-api'
+

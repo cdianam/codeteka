@@ -1,0 +1,8 @@
+plugins {
+    id 'sbt-spring'
+    id 'org.graalvm.buildtools.native'
+}
+
+dependencies {
+
+}

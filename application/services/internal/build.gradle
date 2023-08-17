@@ -1,0 +1,18 @@
+plugins {
+    id 'sbt-spring'
+    id 'sbt-mapstruct'
+}
+
+group = "com.sbt.demo.application.services.internal"
+
+project.archivesBaseName = 'demo-services-internal'
+
+dependencies {
+    implementation project(':application:services:api')
+    implementation project(':application:entities:api')
+}
+
+
+bootJar {
+    enabled = false
+}

@@ -1,0 +1,27 @@
+
+pluginManagement {
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'stb-demo'
+
+include ":application:controllers:api"
+include ":application:controllers:internal"
+
+include ":application:services:api"
+include ":application:services:internal"
+
+include ":application:entities:api"
+include ":application:entities:internal"
+
+include ":application:container"

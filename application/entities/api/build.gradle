@@ -1,0 +1,13 @@
+plugins {
+    id 'sbt-db'
+}
+
+group = "com.sbt.demo.application.entities.api"
+
+project.archivesBaseName = 'demo-entities-api'
+
+
+bootJar {
+    enabled = false
+}
+

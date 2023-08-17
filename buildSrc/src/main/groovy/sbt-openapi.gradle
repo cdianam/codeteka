@@ -1,0 +1,72 @@
+plugins {
+    id 'sbt-base'
+    id 'java-library'
+    id "org.openapi.generator"
+    id "com.github.node-gradle.node"
+}
+
+java {
+    withSourcesJar()
+}
+
+dependencies {
+    // json mapping uses java time classes
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
+
+    implementation "org.openapitools:jackson-databind-nullable:0.2.6"
+    implementation "javax.servlet:javax.servlet-api:4.0.1"
+
+    implementation "io.swagger.core.v3:swagger-annotations:2.2.8"
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+
+    api 'org.springframework:spring-context'
+    api 'org.springframework:spring-web'
+    
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+
+}
+
+
+
+/**
+ *  REQUIRED properties
+ *
+ *  openapiPackageName
+ *  openapiNpmName
+ */
+def openapiSpecName = "api"
+def baseOutputDir = "$buildDir/generated/openapi"
+
+def taskGroup = "openapi"
+
+// attach the generated folder as source for this project
+sourceSets {
+    main {
+        java {
+            srcDir "$baseOutputDir/spring/src/main/java"
+        }
+    }
+}
+
+
+
+//==============  Java/Spring
+tasks.register('generateSpring', org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
+    group = taskGroup
+    generatorName = "spring"
+    inputSpec = "$projectDir/${openapiSpecName}.yaml"
+    outputDir = "$baseOutputDir/spring"
+    configOptions = [
+            interfaceOnly       : "true",
+            skipDefaultInterface: "true"
+    ]
+    apiPackage = "$openapiPackageName"
+    invokerPackage = "${openapiPackageName}.invoker"
+    modelPackage = "${openapiPackageName}.model"
+    typeMappings = [OffsetDateTime: "java.time.Instant"]
+    importMappings = [OffsetDateTime: "java.time.Instant"]
+}
+
+compileJava.dependsOn(generateSpring)
+sourcesJar.dependsOn(generateSpring)

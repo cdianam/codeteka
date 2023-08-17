@@ -1,0 +1,11 @@
+plugins {
+    id 'sbt-spring'
+}
+
+group = "com.sbt.demo.application.services.api"
+
+project.archivesBaseName = 'demo-services-api'
+
+bootJar {
+    enabled = false
+}

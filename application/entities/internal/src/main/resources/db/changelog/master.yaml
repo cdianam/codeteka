@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: log-23-08-16.yaml # format: log-<year>-<month>-<day>.yaml
+      relativeToChangelogFile: true

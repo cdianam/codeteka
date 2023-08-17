@@ -1,0 +1,17 @@
+plugins {
+    id 'sbt-spring'
+}
+
+group = "com.sbt.demo.application.container"
+
+
+dependencies {
+    implementation project(':application:controllers:api')
+    implementation project(':application:controllers:internal')
+
+    implementation project(':application:services:api')
+    implementation project(':application:services:internal')
+
+    implementation project(':application:entities:api')
+    implementation project(':application:entities:internal')
+}

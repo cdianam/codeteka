@@ -1,0 +1,17 @@
+plugins {
+    id 'sbt-db'
+}
+
+group = "com.sbt.demo.application.entities.internal"
+
+project.archivesBaseName = 'demo-entities-internal'
+
+dependencies {
+    implementation project(':application:entities:api')
+}
+
+
+bootJar {
+    enabled = false
+}
+

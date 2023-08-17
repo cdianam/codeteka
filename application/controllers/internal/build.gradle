@@ -1,0 +1,18 @@
+plugins {
+    id 'sbt-web'
+    id 'sbt-mapstruct'
+
+}
+
+group = "com.sbt.demo.application.controllers.internal"
+
+project.archivesBaseName = 'demo-http-internal'
+
+dependencies {
+    implementation project(':application:controllers:api')
+    implementation project(':application:services:api')
+}
+
+bootJar {
+    enabled = false
+}

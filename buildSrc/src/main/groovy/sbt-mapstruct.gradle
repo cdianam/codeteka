@@ -1,0 +1,11 @@
+plugins {
+    id "sbt-base"
+    id "java-library"
+}
+
+def mapstructVersion = "1.5.5.Final"
+
+dependencies {
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+}
